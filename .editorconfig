@@ -1,0 +1,3 @@
+# CSharp Formatting rules:
+[*.cs]
+csharp_new_line_before_open_brace = none
