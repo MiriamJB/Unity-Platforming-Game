@@ -1,42 +1,50 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour {
-
-    [SerializeField] public Transform groundCheckTransform = null;
-    [SerializeField] public LayerMask playerMask;
+public class Player : MonoBehaviour
+{
+    public Transform groundCheckTransform = null;
     private bool jumpKeyWasPressed;
     private float horizontalInput;
-    private Rigidbody rigidbodyComponent;
-
+    private Rigidbody rigidBodyComponent;
+    private int jumpsRemaining = 2;    
     // Start is called before the first frame update
-    void Start() {
-        rigidbodyComponent = GetComponent<Rigidbody>();
+    void Start()
+    {
+        rigidBodyComponent = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
             jumpKeyWasPressed = true;
         }
-        else if (Input.GetKeyUp(KeyCode.Space)) {
-            jumpKeyWasPressed = false;
-        }
-
         horizontalInput = Input.GetAxis("Horizontal");
     }
 
-    private void FixedUpdate() {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, 0);
-
-        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0) {
+    private void FixedUpdate()
+    {
+        rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y , 0);
+        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length <= 2 && jumpsRemaining <= 0)
+        {
             return;
         }
 
-        if (jumpKeyWasPressed) {
-            rigidbodyComponent.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
+        {
+            jumpsRemaining = 2;
         }
+
+        if (jumpKeyWasPressed)
+        {
+            rigidBodyComponent.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+            jumpKeyWasPressed = false;
+            jumpsRemaining--;
+        }
+
     }
-}
+}  
