@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,9 +16,9 @@ public class Player : MonoBehaviour
     // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
     private int jumpsRemaining;
     // Define object's walk speed.
-    private float walkSpeed = 5.0f;
+    private float walkSpeed = 4.0f;
     // Define object's jump speed.
-    private float jumpSpeed = 5.0f;
+    private float jumpSpeed = 4.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +56,8 @@ public class Player : MonoBehaviour
         
         if (jumpKeyWasPressed)
         {
+            // Cancel out gravity when peforming any kind of jump.
+            rigidBodyComponent.velocity = new Vector3(horizontalInput, 0 , 0);
             // Set upwards jump force as up vector * jump speed.
             rigidBodyComponent.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange);
             // Define jump key as not pressed.

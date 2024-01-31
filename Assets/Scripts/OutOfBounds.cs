@@ -3,7 +3,7 @@ using UnityEngine;
 public class OutOfBounds : MonoBehaviour
 {
     public Transform player;
-    public float x, y, z;
+    public float x,y,z;
 
     void OnTriggerExit(Collider other)
     {
