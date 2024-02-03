@@ -15,13 +15,16 @@ public class Player : MonoBehaviour
     private Rigidbody rigidBodyComponent;
 
     // Define *total* amount of jumps player can perform before having to touch grass again.
-    private int jumpsTotal = 2;
+    public int jumpsTotal = 2;
     // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
-    private int jumpsRemaining;
+    public int jumpsRemaining;
     // Define object's walk speed.
     private float walkSpeed = 5.0f;
     // Define object's jump speed.
     private float jumpSpeed = 5.0f;
+
+    public GameObject footstepSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,11 @@ public class Player : MonoBehaviour
         rigidBodyComponent = GetComponent<Rigidbody>();
         // Set jumps remaining as total jumps.
         jumpsRemaining = jumpsTotal;
+
+        if (footstepSound != null)
+        {
+            footstepSound.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -41,11 +49,25 @@ public class Player : MonoBehaviour
         }
         // Set horizontal direction to be input * walk speed.
         horizontalInput = Input.GetAxis("Horizontal")*walkSpeed;
+
+        if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
+        {
+            Footstep();
+        }
+        else
+        {
+            StopFootsteps();
+        }
+
     }
 
     private void FixedUpdate()
     {
+
+
         rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y , 0);
+
+
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length <= 2 && jumpsRemaining <= 0)
         {
             return;
@@ -66,6 +88,22 @@ public class Player : MonoBehaviour
             // Decrese amount of jumps left to jump.
             jumpsRemaining--;
         }
-
     }
+
+    void Footstep()
+    {
+        if (footstepSound != null && !footstepSound.activeSelf)
+        {
+            footstepSound.SetActive(true);
+        }
+    }
+
+    void StopFootsteps()
+    {
+        if (footstepSound != null && footstepSound.activeSelf)
+        {
+            footstepSound.SetActive(false);
+        }
+    }
+
 }  
