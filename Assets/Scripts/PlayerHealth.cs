@@ -6,6 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth;
     public int health;
+    // public SpriteRenderer playerSr;
+    // public Player jumpKeyWasPressed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         if (health <= 0){
             Destroy(gameObject);
+            // playerSr.enabled = false;
+            // jumpKeyWasPressed.enabled = false;
         }
 
     }
