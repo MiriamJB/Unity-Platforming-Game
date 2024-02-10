@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3020,8 +3020,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 1760909032}
+  jumpKeyWasPressed: 0
   jumpsTotal: 2
   jumpsRemaining: 0
+  inAir: 0
   footstepSound: {fileID: 103668389}
 --- !u!114 &485323605
 MonoBehaviour:
@@ -8365,6 +8367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764c6b9bcecae414292084f4a8cb5f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 485323604}
 --- !u!1 &1760909031
 GameObject:
   m_ObjectHideFlags: 0
