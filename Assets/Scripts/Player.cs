@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
     // Define object's walk speed.
     private float walkSpeed = 4.0f;
     // Define object's jump speed.
-    private float jumpSpeed = 4.0f;
+    private float jumpSpeed = 5.0f;
     public bool inAir;
 
     public GameObject footstepSound;
