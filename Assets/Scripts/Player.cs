@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 
     // FixedUpdate is called at a set rate (doesn't fluctuate based on frame rate like the Update method)
     private void FixedUpdate() {
-        objectsPlayerIsTouching = Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length; // define how many objects player is touching
+        objectsPlayerIsTouching = Physics.OverlapSphere(groundCheckTransform.position, 0.05f).Length; // define how many objects player is touching
         rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, 0); // move the player left & right based off of horizontalInput
 
         // if the player has no jumps left and is not touching any other objects, return from the method
