@@ -7249,11 +7249,11 @@ GameObject:
   - component: {fileID: 902097155}
   - component: {fileID: 902097162}
   - component: {fileID: 902097161}
-  - component: {fileID: 902097160}
   - component: {fileID: 902097159}
   - component: {fileID: 902097158}
   - component: {fileID: 902097156}
   - component: {fileID: 902097157}
+  - component: {fileID: 902097160}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -7293,11 +7293,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 2092587359}
-  objectsPlayerIsTouching: 0
   jumpKeyWasPressed: 0
-  jumpsTotal: 3
-  jumpsRemaining: 0
   inAir: 0
+  isDead: 0
+  canMove: 1
+  maxHealth: 5
+  health: 0
   horizontalInput: 0
   footstepSound: {fileID: 897997069}
 --- !u!114 &902097157
@@ -7314,6 +7315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   health: 0
+  player: {fileID: 902097156}
 --- !u!54 &902097158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7360,10 +7362,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.25
+  m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!114 &902097160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11178,10 +11180,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1510705936}
-  - {fileID: 516168605}
   - {fileID: 697316859}
   - {fileID: 1798160686}
   - {fileID: 739049684}
+  - {fileID: 516168605}
   - {fileID: 182952085}
   - {fileID: 902097155}
   - {fileID: 509534820}

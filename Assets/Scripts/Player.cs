@@ -7,10 +7,12 @@ public class Player : MonoBehaviour {
     // Jump vairables
     private int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
     public bool jumpKeyWasPressed; // Keep track of whether jump key was pressed.
-    private int jumpsTotal = 2; // Define *total* amount of jumps player can perform before having to touch grass again.
+    private int jumpsTotal = 3; // Define *total* amount of jumps player can perform before having to touch grass again.
     private int jumpsRemaining; // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
     private float jumpSpeed = 5.0f; // Define object's jump speed.
     public bool inAir; // used to control animations in animationStateController.cs
+    public bool isDead = false;
+    public bool canMove = true;
 
     // Movement variables
     public float horizontalInput; // Get horizontal input.
@@ -32,47 +34,52 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // pressing the space bar will trigger a jump
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0) {
-            jumpKeyWasPressed = true;
-            inAir = true;
-        }
+        if (canMove) {
+            // pressing the space bar will trigger a jump
+            if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0) {
+                jumpKeyWasPressed = true;
+                inAir = true;
+            }
 
-        horizontalInput = Input.GetAxis("Horizontal") * walkSpeed; // Set horizontal direction to be input * walk speed.
+            horizontalInput = Input.GetAxis("Horizontal") * walkSpeed; // Set horizontal direction to be input * walk speed.
 
-        // footstep sound will start when the player is touching the ground and moving, and will stop otherwise
-        if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2) {
-            Footstep();
-        }
-        else {
-            StopFootsteps();
+            // footstep sound will start when the player is touching the ground and moving, and will stop otherwise
+            if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2) {
+                Footstep();
+            }
+            else {
+                StopFootsteps();
+            }
         }
     }
 
     // FixedUpdate is called at a set rate (doesn't fluctuate based on frame rate like the Update method)
     private void FixedUpdate() {
-        objectsPlayerIsTouching = Physics.OverlapSphere(groundCheckTransform.position, 0.05f).Length; // define how many objects player is touching
-        rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, 0); // move the player left & right based off of horizontalInput
+        if (canMove) {
+            objectsPlayerIsTouching = Physics.OverlapSphere(groundCheckTransform.position, 0.05f).Length; // define how many objects player is touching
+            rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, 0); // move the player left & right based off of horizontalInput
 
-        // if the player has no jumps left and is not touching any other objects, return from the method
-        if (objectsPlayerIsTouching <= 2 && jumpsRemaining <= 0) {
-            return;
-        }
+            // if the player has no jumps left and is not touching any other objects, return from the method
+            if (objectsPlayerIsTouching <= 2 && jumpsRemaining <= 0) {
+                return;
+            }
 
-        // If player touches ground, reset amount of jumps that can be performed.
-        if (objectsPlayerIsTouching > 2) {
-            jumpsRemaining = jumpsTotal; // Reset remaining jumps as total jumps.
-            inAir = false;
-        } else if (!inAir) {
-            inAir = true; // player is in air if touching less than 2 objects
-        }
+            // If player touches ground, reset amount of jumps that can be performed.
+            if (objectsPlayerIsTouching > 2) {
+                jumpsRemaining = jumpsTotal; // Reset remaining jumps as total jumps.
+                inAir = false;
+            }
+            else if (!inAir) {
+                inAir = true; // player is in air if touching less than 2 objects
+            }
 
-        // make the player jump if the space bar was pressed
-        if (jumpKeyWasPressed) {
-            rigidBodyComponent.velocity = new Vector3(horizontalInput, 0, 0); // Cancel out gravity when peforming any kind of jump.
-            rigidBodyComponent.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange); // Set upwards jump force as up vector * jump speed.
-            jumpKeyWasPressed = false; // Define jump key as not pressed.
-            jumpsRemaining--; // Decrese amount of jumps left to jump.
+            // make the player jump if the space bar was pressed
+            if (jumpKeyWasPressed) {
+                rigidBodyComponent.velocity = new Vector3(horizontalInput, 0, 0); // Cancel out gravity when peforming any kind of jump.
+                rigidBodyComponent.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange); // Set upwards jump force as up vector * jump speed.
+                jumpKeyWasPressed = false; // Define jump key as not pressed.
+                jumpsRemaining--; // Decrese amount of jumps left to jump.
+            }
         }
     }
 
@@ -89,5 +96,4 @@ public class Player : MonoBehaviour {
             footstepSound.SetActive(false);
         }
     }
-
 }

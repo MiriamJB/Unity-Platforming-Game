@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth;
     public int health;
-    // public SpriteRenderer playerSr;
-    // public Player jumpKeyWasPressed;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +15,9 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         if (health <= 0){
-            Destroy(gameObject);
-            // playerSr.enabled = false;
-            // jumpKeyWasPressed.enabled = false;
+            //Destroy(gameObject);
+            player.canMove = false;
+            player.isDead = true;
         }
-
     }
-
-
 }
