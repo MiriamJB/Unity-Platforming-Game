@@ -1,16 +1,14 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour {
     private Rigidbody rigidBodyComponent; // Set rigidbody to be used.
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
 
     // Jump vairables
-    public int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
+    private int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
     public bool jumpKeyWasPressed; // Keep track of whether jump key was pressed.
-    public int jumpsTotal = 2; // Define *total* amount of jumps player can perform before having to touch grass again.
-    public int jumpsRemaining; // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
+    private int jumpsTotal = 2; // Define *total* amount of jumps player can perform before having to touch grass again.
+    private int jumpsRemaining; // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
     private float jumpSpeed = 5.0f; // Define object's jump speed.
     public bool inAir; // used to control animations in animationStateController.cs
 
