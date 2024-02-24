@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlasticGui.WorkspaceWindow;
 using UnityEngine;
 
 public class Grappling2 : MonoBehaviour
@@ -7,49 +8,90 @@ public class Grappling2 : MonoBehaviour
     public Transform playerTransform;
     private Vector3 mousePos;
     public LineRenderer line;
+    //public HingeJoint grappleHinge;
 
-    private int maxGrappleDistance = 2;
+    private int maxGrappleDistance = 4;
     public LayerMask whatIsGrappleable;
     private Vector3 grapplePoint;
+    private KeyCode grappleKey = KeyCode.Mouse0; // left click
 
     // Start is called before the first frame update
     void Start()
     {
+        line.enabled = false;
     }
 
     // Update is called once per frame
     void Update(){
-        //mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
-        //Debug.DrawRay(playerTransform.position, mousePos);
+        // debug stuff below:
+        // mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
+        // Debug.DrawRay(playerTransform.position, mousePos-playerTransform.position);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        if (line.enabled) {
+            ExecuteGrapple();
+        } else if (Input.GetKeyDown(grappleKey)) {
             StartGrapple();
         }
         
     }
 
     private void StartGrapple() {
+        RaycastHit hit;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f));
 
-        RaycastHit hit;
-        if(Physics.Raycast(playerTransform.position, mousePos, out hit, maxGrappleDistance, whatIsGrappleable)) {
+        if(Physics.Raycast(playerTransform.position, mousePos-playerTransform.position, out hit, maxGrappleDistance, whatIsGrappleable)) {
+            Debug.Log("hit");
             grapplePoint = hit.point;
+            //grappleHinge.anchor = grapplePoint;
             ExecuteGrapple();
         } else {
-            StopGrapple();
+            Debug.Log("miss");
+            grapplePoint = findMaxDistance();
+            DrawGrapplingHook();
+            Invoke(nameof(StopGrapple), 0.2f);
         }
 
     }
 
     private void ExecuteGrapple() {
-        Debug.Log("hit");
+        DrawGrapplingHook();
+
+        if (Input.GetKeyUp(grappleKey)) {
+            StopGrapple();
+        }
+    }
+
+    private void StopGrapple() {
+        line.enabled = false;
+    }
+
+    private void DrawGrapplingHook() {
+        line.enabled = true;
         line.SetPosition(0, playerTransform.position);
         line.SetPosition(1, grapplePoint);
     }
 
-    private void StopGrapple() {
-        Debug.Log("miss");
-        line.SetPosition(0, playerTransform.position);
-        line.SetPosition(1, mousePos);
+    // find the coordinates for the grapple point based off of the players postion, the mouse position, and the max grapple distance
+    // it mostly works...
+    private Vector3 findMaxDistance() {
+        Vector3 vector = mousePos;
+        float xDistance = mousePos.x - playerTransform.position.x;
+        float yDistance = mousePos.y - playerTransform.position.y;
+
+        // find x coordinate
+        if(xDistance < -maxGrappleDistance) {
+            vector.x = playerTransform.position.x - maxGrappleDistance;
+        } else if (xDistance > maxGrappleDistance) {
+            vector.x = playerTransform.position.x + maxGrappleDistance;
+        }
+
+        // find y coordinate
+        if(yDistance < -maxGrappleDistance) {
+            vector.y = playerTransform.position.y - maxGrappleDistance;
+        } else if (yDistance > maxGrappleDistance) {
+            vector.y = playerTransform.position.y + maxGrappleDistance;
+        }
+
+        return vector;
     }
 }
