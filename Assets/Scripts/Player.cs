@@ -13,11 +13,15 @@ public class Player : MonoBehaviour {
     public bool inAir; // used to control animations in animationStateController.cs
     public bool isDead = false;
     public bool canMove = true;
+    private bool isNearSign = false; 
+
 
     // Movement variables
     public float horizontalInput; // Get horizontal input.
     private float walkSpeed = 4.0f; // Define object's walk speed.
     public GameObject footstepSound; // used for sound of footsteps
+    public GameObject tutorialText;
+
 
 
     // Start is called before the first frame update
@@ -30,7 +34,21 @@ public class Player : MonoBehaviour {
         if (footstepSound != null) {
             footstepSound.SetActive(false);
         }
-    }
+
+        if (tutorialText != null) {
+            tutorialText.SetActive(false);
+        }
+        // Update tutorial text visibility based on the player's proximity to the sign
+            if (isNearSign) {
+                if (tutorialText != null) {
+                    tutorialText.SetActive(true);
+                }
+            } else {
+                if (tutorialText != null) {
+                    tutorialText.SetActive(false);
+                }
+            }
+        }
 
     // Update is called once per frame
     void Update() {
@@ -96,4 +114,18 @@ public class Player : MonoBehaviour {
             footstepSound.SetActive(false);
         }
     }
+    // OnTriggerEnter is called when the Collider other enters the trigger
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Sign")) {
+            isNearSign = true;
+        }
+    }
+
+    // OnTriggerExit is called when the Collider other exits the trigger
+    void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Sign")) {
+            isNearSign = false;
+        }
+    }
 }
+
