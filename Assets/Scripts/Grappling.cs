@@ -4,7 +4,7 @@ public class Grappling : MonoBehaviour
 {
     // player/mouse info
     public Transform playerTransform; // used to get the position of the player. Swap this out with the grapple gun
-    public Vector3 startPoint; // where the line for the grappling hook will start
+    private Vector3 startPoint; // where the line for the grappling hook will start
     private Vector3 mousePos; // where the cursor is in the game view
 
     // grappling specifications
