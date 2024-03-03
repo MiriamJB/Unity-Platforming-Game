@@ -7452,6 +7452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 902097155}
+  startPoint: {x: 0, y: 0, z: 0}
   line: {fileID: 1709539254}
   whatIsGrappleable:
     serializedVersion: 2
@@ -10059,7 +10060,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2362e11333ef49a4ea9af274ea73e0af, type: 2}
+  - {fileID: 2100000, guid: e5571524a7add2c4fa65e236574d7988, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

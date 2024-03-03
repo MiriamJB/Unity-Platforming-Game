@@ -1,85 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Grappling : MonoBehaviour {
-    [Header("References")]
-    //private PlayerMovementGrappling pm; // probably won't need this
-    public Transform playerTransform;
-    public Transform grappleStartPoint;
-    public Vector3 mousePosition;
-    public LayerMask whatIsGrappleable;
-    public LineRenderer lr; // need to assign this before testing
+public class Grappling : MonoBehaviour
+{
+    // player/mouse info
+    public Transform playerTransform; // used to get the position of the player. Swap this out with the grapple gun
+    public Vector3 startPoint; // where the line for the grappling hook will start
+    private Vector3 mousePos; // where the cursor is in the game view
 
-    [Header("Grappling")] // def change these to be private after deciding values
-    public float maxGrappleDistance;
-    public float grappleDelayTime;
+    // grappling specifications
+    public LineRenderer line; // used to draw the line for the grappling hook
+    public LayerMask whatIsGrappleable; // the layer that the grappling hook can attach to
+    private readonly int maxGrappleDistance = 5; // the maximum distance the player can shoot their grappling hook
+    private Vector3 grapplePoint; // where the line for the grappling hook will end
+    private readonly KeyCode grappleKey = KeyCode.Mouse0; // left click
 
-    private Vector3 grapplePoint;
-
-    [Header("Cooldown")]
-    private float grapplingCd = 0; // no cooldown for now... change this later
-    private float grapplingCdTimer;
-
-    [Header("Input")]
-    private KeyCode grappleKey = KeyCode.Mouse0;
-
-    private bool grappling;
+    // joint stuff
+    private SpringJoint joint;
+    private readonly float spring = 4.5f;
+    private readonly float damper = 7f;
+    private readonly float massScale = 4.5f;
 
 
-    private void Start() {
-        //pm = GetComponent<PlayerMovementGrappling>();
+    void Start() {
+        line.enabled = false; // starts without a line being drawn
     }
 
-    private void Update() {
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
-        Debug.DrawRay(grappleStartPoint.position, mousePosition);
+    void Update() {
+        startPoint = playerTransform.position; // update where the line should start based on the player's position
 
-        // if the left mouse button is clicked, start grappling
-        if(Input.GetKeyDown(grappleKey)) {
+        if (line.enabled) {
+            ExecuteGrapple(); // if currently grappling, keep grappling
+        } else if (Input.GetKeyDown(grappleKey)) { //if not grappling, check to see if the user has pressed the key to start grappling
             StartGrapple();
         }
-
-        // decrement the timer if there's time left on it
-        if(grapplingCdTimer > 0) {
-            grapplingCdTimer -= Time.deltaTime;
-        }
     }
-
+    
+    // see if the user will hit anything when they start grappling
     private void StartGrapple() {
-        // if the cool down timer is not zero, skip this method
-        if(grapplingCdTimer > 0) {
-            return;
+        RaycastHit hit; // used to store the data of where the grappling hook lands a hit
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f)); // find where the mouse cursor is in the game view
+
+        if(Physics.Raycast(startPoint, mousePos-startPoint, out hit, maxGrappleDistance, whatIsGrappleable)) { // send out a ray to check if there is anything grappleable between the player and the mouse cursor
+            Debug.Log("hit");
+            grapplePoint = hit.point; // set the grappling point to the point that was hit
+            ConnectJoint();
+            ExecuteGrapple();
+        } else { // if there was no hit, then the user missed
+            Debug.Log("miss");
+            Vector3 dir = mousePos - startPoint; // find the direction the mouse is pointing to
+            float dist = Mathf.Clamp(Vector3.Distance(startPoint, mousePos), 0, maxGrappleDistance); // find the distance between the player and the mouse, and go no further than the max grapple distance
+            grapplePoint = startPoint + dir.normalized * dist; // set the grappling point to be the at the distance of dist relative to the start point
+            DrawGrapplingHook();
+            Invoke(nameof(StopGrapple), 0.2f);
         }
 
-        grappling = true; // the player is now grappling
-
-
-        RaycastHit hit;
-        if(Physics.Raycast(playerTransform.position, mousePosition, out hit, maxGrappleDistance, whatIsGrappleable)) { // send a ray out from the camera
-            grapplePoint = hit.point; // save the point that was hit in side of grapplePoint
-            Invoke(nameof(ExecuteGrapple), grappleDelayTime); // run the ExecuteGrapple method after a small delay
-        } else { // if the grappling hook doesn't hit anything, stop grappling
-            grapplePoint = playerTransform.position * maxGrappleDistance;
-            Invoke(nameof(StopGrapple), grappleDelayTime);
-        }
-
-        // draw a line to the grapplePoint
-        lr.enabled = true;
-        lr.SetPosition(1, grapplePoint);
     }
 
+    // create the joint for the grappling hook
+    private void ConnectJoint() {
+        joint = playerTransform.gameObject.AddComponent<SpringJoint>();
+        joint.autoConfigureConnectedAnchor = false;
+        joint.connectedAnchor = grapplePoint;
+
+        float distanceFromPoint = Vector3.Distance(startPoint, grapplePoint);
+
+        joint.maxDistance = distanceFromPoint * 0.8f;
+        joint.minDistance = distanceFromPoint * 0.25f;
+
+        joint.spring = spring;
+        joint.damper = damper;
+        joint.massScale = massScale;
+    }
+
+    // draw the line and stop grappling if the user releases the grappleKey
     private void ExecuteGrapple() {
-        Debug.Log("Hit!");
-        if (grappling) {
-            lr.SetPosition(0, grappleStartPoint.position);
+        DrawGrapplingHook();
+
+        if (Input.GetKeyUp(grappleKey)) {
+            StopGrapple();
         }
     }
 
+    // stop drawing the line and destroy the joint
     private void StopGrapple() {
-        Debug.Log("Miss!");
-        grappling = false;
-        grapplingCdTimer = grapplingCd;
-        lr.enabled = false;
+        line.enabled = false;
+        Destroy(joint);
+    }
+
+    // draw a line from the start point to the grapple point
+    private void DrawGrapplingHook() {
+        line.enabled = true;
+        line.SetPosition(0, startPoint);
+        line.SetPosition(1, grapplePoint);
     }
 }

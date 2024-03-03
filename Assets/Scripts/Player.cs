@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     // Jump vairables
     private int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
     public bool jumpKeyWasPressed; // Keep track of whether jump key was pressed.
-    private int jumpsTotal = 3; // Define *total* amount of jumps player can perform before having to touch grass again.
+    private int jumpsTotal = 2; // Define *total* amount of jumps player can perform before having to touch grass again.
     private int jumpsRemaining; // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
     private float jumpSpeed = 5.0f; // Define object's jump speed.
     public bool inAir; // used to control animations in animationStateController.cs
