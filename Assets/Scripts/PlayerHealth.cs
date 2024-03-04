@@ -13,11 +13,14 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0){
-            //Destroy(gameObject);
-            player.canMove = false;
-            player.isDead = true;
+        if(player.invulnerability == false){
+            health -= damage;
+            player.ActivateInvulnerability();
+            if (health <= 0){
+                //Destroy(gameObject);
+                player.canMove = false;
+                player.isDead = true;
+            }
         }
     }
 }

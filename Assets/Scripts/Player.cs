@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
     private float walkSpeed = 4.0f; // Define object's walk speed.
     public GameObject footstepSound; // used for sound of footsteps
 
+    // Others
+    public bool invulnerability = false; 
 
     // Start is called before the first frame update
     void Start() {
@@ -96,4 +98,14 @@ public class Player : MonoBehaviour {
             footstepSound.SetActive(false);
         }
     }
+
+    public void ActivateInvulnerability() {
+        invulnerability = true;
+        Invoke("DeactivateInvulnerability", 3f);
+    }
+
+    private void DeactivateInvulnerability() {
+        invulnerability = false;
+    }
+
 }
