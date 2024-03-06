@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2825,6 +2825,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 1760909032}
+  jumpKeyWasPressed: 0
+  inAir: 0
+  isDead: 0
+  canMove: 1
+  horizontalInput: 0
+  footstepSound: {fileID: 0}
 --- !u!114 &485323605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2839,6 +2845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 0
+  player: {fileID: 0}
 --- !u!4 &502557284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2086235976217700529, guid: 09a3c5f7d9cf5924ba5829fe8846d322, type: 3}
@@ -8728,6 +8735,8 @@ MonoBehaviour:
   x: -0.5
   y: 1.5
   z: 0.5
+  damage: 0
+  playerHealth: {fileID: 0}
 --- !u!65 &1991790346
 BoxCollider:
   m_ObjectHideFlags: 0
