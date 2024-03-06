@@ -995,6 +995,7 @@ MonoBehaviour:
   - {fileID: 320923829}
   - {fileID: 734731821}
   speed: 1
+  cycle: 1
 --- !u!64 &98192079
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2693,6 +2694,7 @@ MonoBehaviour:
   - {fileID: 739049684}
   - {fileID: 516168605}
   speed: 3
+  cycle: 1
 --- !u!65 &182952082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8780,6 +8782,7 @@ MonoBehaviour:
   horizontalInput: 0
   footstepSound: {fileID: 897997069}
   tutorialText: {fileID: 0}
+  invulnerability: 0
 --- !u!114 &902097157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9746,6 +9749,7 @@ MonoBehaviour:
   - {fileID: 423260785}
   - {fileID: 43527249}
   speed: 3
+  cycle: 1
 --- !u!65 &1140852037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10513,6 +10517,7 @@ MonoBehaviour:
   - {fileID: 662741722}
   - {fileID: 1343068783}
   speed: 3
+  cycle: 1
 --- !u!65 &1324327941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11298,7 +11303,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407107548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13190,6 +13195,7 @@ MonoBehaviour:
   - {fileID: 1734821382}
   - {fileID: 782157008}
   speed: 3
+  cycle: 0
 --- !u!1001 &1755159408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13904,6 +13910,7 @@ MonoBehaviour:
   - {fileID: 1442430036}
   - {fileID: 522920199}
   speed: 3
+  cycle: 1
 --- !u!65 &1923864845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14409,6 +14416,7 @@ MonoBehaviour:
   - {fileID: 1106133011}
   - {fileID: 1401472955}
   speed: 1
+  cycle: 1
 --- !u!64 &1956163336
 MeshCollider:
   m_ObjectHideFlags: 0
