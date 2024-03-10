@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
-{
+public class PlayerHealth : MonoBehaviour {
     public int maxHealth;
     public int health;
     public Player player;
     private OxygenDisplay oxygenDisplay;
 
-    void Start()
-    {
+
+    // Start is called before the first frame update
+    void Start() {
+
         health = maxHealth;
 
 
@@ -50,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
                 //Destroy(gameObject);
                 player.canMove = false;
                 player.isDead = true;
+
             }
         }
     }
