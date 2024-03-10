@@ -1,44 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InAirDash : MonoBehaviour
 {
-    private Rigidbody rb;
-    private int dashesLeft;
-    private Color originalColor;
-    [SerializeField] private bool isGrounded;
-    [SerializeField] private Transform groundRayTransform;
-    [SerializeField] private LayerMask groundLayer;
+    private Player player; // Reference to the Player class
+    private bool isDashing = false;
+
+    // Customize these variables according to your needs
     [SerializeField] private int numDashes;
     [SerializeField] private int dashForce;
-    [SerializeField] private ParticleSystem dashTrail;
+    [SerializeField] private float dashCooldown;
 
-    //[SerializeField] private SpriteRenderer characterRenderer;
+    private int dashesLeft;
+    private float lastDashTime;
 
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
-        //originalColor = characterRenderer.color;
-        dashTrail = GetComponentInChildren<ParticleSystem>(); // Assumes the Particle System is a child of the player
-        dashTrail.Stop(); // Stop the particle system initially
-    }
-
-    void FixedUpdate()
-    {
-        isGrounded = Physics.Linecast(groundRayTransform.position, groundRayTransform.position, groundLayer);
-        if (isGrounded)
-        {
-            dashesLeft = numDashes;
-        }
+        player = GetComponent<Player>();
+        dashesLeft = numDashes;
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        if (  x != 0 && isGrounded == false && rb.velocity.y <= 0)
+        if (player.inAir && !isDashing && dashesLeft > 0 && Time.time - lastDashTime >= dashCooldown)
         {
-            if (dashesLeft > 0)
+            if (Input.GetKeyDown(KeyCode.LeftShift)) // You can change this to any other input
             {
                 StartCoroutine(Dash());
             }
@@ -47,22 +33,29 @@ public class InAirDash : MonoBehaviour
 
     IEnumerator Dash()
     {
-        Debug.Log("Dashing!");
-    //characterRenderer.color = Color.cyan;
+        isDashing = true;
+        player.canMove = false;
 
-    // Play the dash trail
-    dashTrail.Play();
+        Debug.Log("Dashing!"); // Log that the player is dashing
 
-    Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-    rb.velocity = Vector3.zero;
-    rb.AddForce(dir.normalized * dashForce, ForceMode.VelocityChange);
-    dashesLeft--;
+        Vector3 dir = new Vector3(player.horizontalInput, 0, 0); // Adjust this based on your movement input
+        player.rigidBodyComponent.velocity = Vector3.zero;
+        player.rigidBodyComponent.AddForce(dir.normalized * dashForce, ForceMode.VelocityChange);
+        dashesLeft--;
 
-    yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f);
 
-    // Stop the dash trail
-    dashTrail.Stop();
+        isDashing = false;
+        player.canMove = true;
+        lastDashTime = Time.time;
+    }
 
-    //characterRenderer.color = originalColor;
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DashPickup")) // Change this to the tag of the object that provides extra dashes
+        {
+            dashesLeft += 1; // Increase the number of available dashes
+            Destroy(other.gameObject); // Assuming the pickup is a consumable
+        }
     }
 }
