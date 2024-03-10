@@ -7,12 +7,13 @@ public class AirBubble : MonoBehaviour
 
     private float startY;
 
+    // Start is called before the first frame update
     void Start()
     {
         startY = transform.position.y; // Store the initial Y position
     }
 
-    // Method being called
+    // Update is called once per frame
     void Update()
     {
         // Moving up and down 
@@ -26,8 +27,22 @@ public class AirBubble : MonoBehaviour
         // Checking if the colliding object is the player
         if (other.CompareTag("Player"))
         {
-            // Destroying the air bubble when the player touches it
+            // Destroy the air bubble when the player touches it
             Destroy(gameObject);
+
+            // Accessing the OxygenDisplay script attached to the oxygen display object
+            OxygenDisplay oxygenDisplay = FindObjectOfType<OxygenDisplay>();
+
+            // If the OxygenDisplay script is found
+            if (oxygenDisplay != null)
+            {
+                // Increase the oxygen level in the oxygen display
+                oxygenDisplay.IncreaseOxygenLevel();
+            }
+            else
+            {
+                Debug.LogWarning("OxygenDisplay script not found!");
+            }
         }
     }
 }
