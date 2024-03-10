@@ -5,6 +5,8 @@ public class Player : MonoBehaviour {
     private Rigidbody rigidBodyComponent; // Set rigidbody to be used.
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
     public Ragdoll ragdoll;
+    public bool isDead = false;
+
 
     // Jump vairables
     private int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
@@ -156,5 +158,6 @@ public class Player : MonoBehaviour {
             isNearSign = false;
         }
     }
+
 }
 

@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
     public int maxHealth;
     public int health;
     public Player player;
@@ -15,10 +16,6 @@ public class PlayerHealth : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-
-    // Start is called before the first frame update
-    void Start() {
-
         health = maxHealth;
 
         // Find and assign the OxygenDisplay component
@@ -75,10 +72,6 @@ public class PlayerHealth : MonoBehaviour {
             else
             {
                 hearts[i].sprite = emptyHeart;
-                //Destroy(gameObject);
-                player.canMove = false;
-                player.isDead = true;
-
             }
         }
     }
