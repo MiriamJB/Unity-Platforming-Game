@@ -45,9 +45,5 @@ public class animationStateController : MonoBehaviour {
         if (animator.GetBool("isJumping") != player.jumpKeyWasPressed) {
             animator.SetBool("isJumping", player.jumpKeyWasPressed); // set isJumping to be the same as jumpKeyWasPressed
         }
-
-        if (animator.GetBool("isDead") != player.isDead) {
-            animator.SetBool("isDead", player.isDead);
-        }
     }
 }
