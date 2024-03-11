@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
-    private Rigidbody rigidBodyComponent; // Set rigidbody to be used.
+    public Rigidbody rigidBodyComponent; // Set rigidbody to be used.
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
     public Ragdoll ragdoll;
     public bool isDead = false;
