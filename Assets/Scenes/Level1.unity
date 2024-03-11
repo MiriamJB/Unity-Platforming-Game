@@ -639,6 +639,7 @@ MonoBehaviour:
   - {fileID: 734731821}
   - {fileID: 320923829}
   speed: 1
+  cycle: 1
 --- !u!64 &98192079
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2337,6 +2338,7 @@ MonoBehaviour:
   - {fileID: 739049684}
   - {fileID: 516168605}
   speed: 3
+  cycle: 1
 --- !u!65 &182952082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9894,6 +9896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fcb5e02505f9b47a1788babf98a3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 902097156}
 --- !u!65 &1359722100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12258,6 +12261,7 @@ MonoBehaviour:
   - {fileID: 1401472955}
   - {fileID: 1106133011}
   speed: 1
+  cycle: 1
 --- !u!64 &1956163336
 MeshCollider:
   m_ObjectHideFlags: 0
