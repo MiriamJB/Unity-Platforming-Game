@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rigidBodyComponent; // Set rigidbody to be used.
+    public Rigidbody rigidBodyComponent; // Set rigidbody to be used.
 
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
     public Ragdoll ragdoll;
@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     private float jumpSpeed = 5.0f; // Define object's jump speed.
 
     public bool inAir; // used to control animations in animationStateController.cs
-    public bool isDead = false;
     public bool canMove = true;
     private bool isNearSign = false;
     public bool isFacingRight = true; // Public so it can be accessed by the shooting mechanism
@@ -50,12 +49,6 @@ public class Player : MonoBehaviour
             tutorialText.SetActive(false);
         }
         // Update tutorial text visibility based on the player's proximity to the sign
-        {
-            if (tutorialText != null)
-            {
-                tutorialText.SetActive(true);
-            }
-        }
         else
         {
             if (tutorialText != null)
