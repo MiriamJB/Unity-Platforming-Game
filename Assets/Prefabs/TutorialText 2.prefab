@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1665448950042186954}
   - component: {fileID: 6029504095136963876}
   m_Layer: 0
-  m_Name: TutorialText
+  m_Name: TutorialText 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,14 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2460573398563429402}
-  m_Text: "Use your grappling tentacle to \nclear large gaps!"
+  m_Text: 'Collect to bubbles to breathe!
+
+    If you run out of air, you''ll start
+
+    losing
+    health!
+
+'
   m_OffsetZ: 0
   m_CharacterSize: 0.2
   m_LineSpacing: 1
