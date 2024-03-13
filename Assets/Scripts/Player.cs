@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody rigidBodyComponent; // Set rigidbody to be used.
+
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
+    public Ragdoll ragdoll;
+    public bool isDead = false;
+
 
     // Jump vairables
     private int objectsPlayerIsTouching; // used to keep track of jumps and if the player is falling
@@ -11,13 +16,12 @@ public class Player : MonoBehaviour
     private int jumpsTotal = 2; // Define *total* amount of jumps player can perform before having to touch grass again.
     private int jumpsRemaining; // Define *current* amount of jumps player can perform before having to touch grass again. (Defined on start event)
     private float jumpSpeed = 5.0f; // Define object's jump speed.
+
     public bool inAir; // used to control animations in animationStateController.cs
     public bool isDead = false;
     public bool canMove = true;
     private bool isNearSign = false;
     public bool isFacingRight = true; // Public so it can be accessed by the shooting mechanism
-
-
 
     // Movement variables
     public float horizontalInput; // Get horizontal input.
@@ -34,7 +38,6 @@ public class Player : MonoBehaviour
     {
         rigidBodyComponent = GetComponent<Rigidbody>(); // Define rigidbody as object's rigidbody component.
         jumpsRemaining = jumpsTotal; // Set jumps remaining as total jumps.
-        inAir = true; // the player starts out in the air
 
         // define the state of footstepSound
         if (footstepSound != null)
@@ -47,7 +50,6 @@ public class Player : MonoBehaviour
             tutorialText.SetActive(false);
         }
         // Update tutorial text visibility based on the player's proximity to the sign
-        if (isNearSign)
         {
             if (tutorialText != null)
             {
@@ -163,6 +165,19 @@ public class Player : MonoBehaviour
         invulnerability = false;
     }
 
+    // makes the player die
+    public void Die() {
+        canMove = false; // lock the character so the user cannot move them anymore
+        StopFootsteps(); // stop the footstep sound
+        Camera.main.transform.SetParent(null); // detach the camera from the player
+        ragdoll.EnableRagdoll(); // make the player ragdoll
+        Invoke(nameof(ReloadScene), 3); // reload after 3 seconds
+    }
+
+    void ReloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     // OnTriggerEnter is called when the Collider other enters the trigger
     void OnTriggerEnter(Collider other)
     {
@@ -180,5 +195,6 @@ public class Player : MonoBehaviour
             isNearSign = false;
         }
     }
+
 }
 

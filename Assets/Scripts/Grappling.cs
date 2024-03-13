@@ -28,8 +28,10 @@ public class Grappling : MonoBehaviour
     void Update() {
         startPoint = playerTransform.position; // update where the line should start based on the player's position
 
-        if (line.enabled) {
-            ExecuteGrapple(); // if currently grappling, keep grappling
+        if (Input.GetKeyUp(grappleKey)) { // check if no longer grappling
+            StopGrapple();
+        } else if (line.enabled) { // check if still grappling
+            ExecuteGrapple();
         } else if (Input.GetKeyDown(grappleKey)) { //if not grappling, check to see if the user has pressed the key to start grappling
             StartGrapple();
         }
@@ -41,12 +43,10 @@ public class Grappling : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8f)); // find where the mouse cursor is in the game view
 
         if(Physics.Raycast(startPoint, mousePos-startPoint, out hit, maxGrappleDistance, whatIsGrappleable)) { // send out a ray to check if there is anything grappleable between the player and the mouse cursor
-            Debug.Log("hit");
             grapplePoint = hit.point; // set the grappling point to the point that was hit
             ConnectJoint();
             ExecuteGrapple();
         } else { // if there was no hit, then the user missed
-            Debug.Log("miss");
             Vector3 dir = mousePos - startPoint; // find the direction the mouse is pointing to
             float dist = Mathf.Clamp(Vector3.Distance(startPoint, mousePos), 0, maxGrappleDistance); // find the distance between the player and the mouse, and go no further than the max grapple distance
             grapplePoint = startPoint + dir.normalized * dist; // set the grappling point to be the at the distance of dist relative to the start point
@@ -75,10 +75,6 @@ public class Grappling : MonoBehaviour
     // draw the line and stop grappling if the user releases the grappleKey
     private void ExecuteGrapple() {
         DrawGrapplingHook();
-
-        if (Input.GetKeyUp(grappleKey)) {
-            StopGrapple();
-        }
     }
 
     // stop drawing the line and destroy the joint
