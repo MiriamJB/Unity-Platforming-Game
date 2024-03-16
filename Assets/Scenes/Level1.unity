@@ -7634,6 +7634,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 509534820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1209327559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8937150873401428873, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+  m_PrefabInstance: {fileID: 9100006344041536247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1231863574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2086235976217700529, guid: 09a3c5f7d9cf5924ba5829fe8846d322, type: 3}
@@ -10815,6 +10820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4354312037630710955, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: grappleStartPoint
+      value: 
+      objectReference: {fileID: 1209327559}
     - target: {fileID: 4713078467917307144, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
