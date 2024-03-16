@@ -101,6 +101,8 @@ GameObject:
   - component: {fileID: 4321245585956816522}
   - component: {fileID: 4713078467917307144}
   - component: {fileID: 4354312037630710955}
+  - component: {fileID: 6141561749168390748}
+  - component: {fileID: 4338577865122948030}
   - component: {fileID: 7275654070093801950}
   - component: {fileID: 8381254678511516244}
   - component: {fileID: 5339855084797241196}
@@ -248,6 +250,7 @@ MonoBehaviour:
   groundCheckTransform: {fileID: 9147017764764694724}
   ragdoll: {fileID: 5339855084797241196}
   isDead: 0
+  timeToRestart: 3
   jumpKeyWasPressed: 0
   inAir: 0
   canMove: 1
@@ -310,10 +313,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 6995330515987129597}
+  grappleStartPoint: {fileID: 8937150873401428873}
   line: {fileID: 5590486139224052595}
   whatIsGrappleable:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &6141561749168390748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257380020443562009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0b049aa61e140a1b7d5a1e6510e18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numDashes: 5
+  dashForce: 15
+  dashCooldown: 5
+--- !u!114 &4338577865122948030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257380020443562009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f94e7ed2909b4b11adc8a2ca98a69fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6712264994819614093}
+  projectilePrefab: {fileID: 5783015218517015145, guid: 014e7ebc1a37943ae93ad527c76edc2c, type: 3}
+  projectileSpawn: {fileID: 2769457801902475548}
+  shootTime: 1
+  shootCounter: 0
+  spawnOffsetDistance: 1
 --- !u!114 &7275654070093801950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +377,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 4321245585956816522}
   currentOxygenIndex: 4
 --- !u!114 &8381254678511516244
 MonoBehaviour:
@@ -3239,6 +3276,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!4 &8937150873401428873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4553914648835474761, guid: b68b0c174c1098f42addc63c7251fac2, type: 3}
+  m_PrefabInstance: {fileID: 4843025878875328192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9214369678928048128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4383662732902252224, guid: b68b0c174c1098f42addc63c7251fac2, type: 3}

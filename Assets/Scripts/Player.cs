@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Transform groundCheckTransform = null; // Set transform for checking if player is touching the ground.
     public Ragdoll ragdoll;
     public bool isDead = false;
+    public int timeToRestart; // amount of time to wait after death before restarting the scene
 
 
     // Jump vairables
@@ -164,7 +165,7 @@ public class Player : MonoBehaviour
         StopFootsteps(); // stop the footstep sound
         Camera.main.transform.SetParent(null); // detach the camera from the player
         ragdoll.EnableRagdoll(); // make the player ragdoll
-        Invoke(nameof(ReloadScene), 3); // reload after 3 seconds
+        Invoke(nameof(ReloadScene), timeToRestart); // reload after a few seconds
     }
 
     void ReloadScene() {

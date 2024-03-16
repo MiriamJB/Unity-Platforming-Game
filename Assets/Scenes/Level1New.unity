@@ -187,11 +187,6 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
---- !u!1 &65776766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 257380020443562009, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
-  m_PrefabInstance: {fileID: 9100006344041536247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &68564335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4461,7 +4456,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6712264994819614093, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
   m_PrefabInstance: {fileID: 9100006344041536247}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65776766}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0726b5738fff3734faa93383e05ca6ec, type: 3}
@@ -6999,45 +6994,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4321245585956816522, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
   m_PrefabInstance: {fileID: 9100006344041536247}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65776766}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09e966948aab54064a3bdbd59b1bfef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1520045480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65776766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc0b049aa61e140a1b7d5a1e6510e18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numDashes: 5
-  dashForce: 15
-  dashCooldown: 5
---- !u!114 &1520045481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65776766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f94e7ed2909b4b11adc8a2ca98a69fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 902097156}
-  projectilePrefab: {fileID: 5783015218517015145, guid: 014e7ebc1a37943ae93ad527c76edc2c, type: 3}
-  projectileSpawn: {fileID: 2090869776}
-  shootTime: 1
-  shootCounter: 0
-  spawnOffsetDistance: 1
 --- !u!1 &1554530929
 GameObject:
   m_ObjectHideFlags: 0
@@ -8346,6 +8308,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a3c5f7d9cf5924ba5829fe8846d322, type: 3}
+--- !u!4 &1994850635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8937150873401428873, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+  m_PrefabInstance: {fileID: 9100006344041536247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2001185149
 GameObject:
   m_ObjectHideFlags: 0
@@ -9061,11 +9028,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2086235976217700529, guid: 09a3c5f7d9cf5924ba5829fe8846d322, type: 3}
   m_PrefabInstance: {fileID: 947462097}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2090869776 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2769457801902475548, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
-  m_PrefabInstance: {fileID: 9100006344041536247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2107502283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9328,6 +9290,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 4354312037630710955, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: grappleStartPoint
+      value: 
+      objectReference: {fileID: 1994850635}
     - target: {fileID: 4713078467917307144, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
@@ -9393,10 +9359,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7275654070093801950, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 1520045469}
-    - target: {fileID: 7275654070093801950, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 302653092}
@@ -9444,13 +9406,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 5518947786099250655, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 257380020443562009, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
-      insertIndex: 9
-      addedObject: {fileID: 1520045480}
-    - targetCorrespondingSourceObject: {fileID: 257380020443562009, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
-      insertIndex: 10
-      addedObject: {fileID: 1520045481}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
