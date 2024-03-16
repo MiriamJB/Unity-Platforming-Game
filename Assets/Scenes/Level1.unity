@@ -10885,6 +10885,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7275654070093801950, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275654070093801950, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 302653092}
@@ -10924,6 +10928,10 @@ PrefabInstance:
       propertyPath: oxygenImages.Array.data[4]
       value: 
       objectReference: {fileID: 229954595}
+    - target: {fileID: 8381254678511516244, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
