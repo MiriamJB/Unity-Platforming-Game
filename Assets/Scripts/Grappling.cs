@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Grappling : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Grappling : MonoBehaviour
     public LayerMask whatIsGrappleable; // the layer that the grappling hook can attach to
     private readonly int maxGrappleDistance = 5; // the maximum distance the player can shoot their grappling hook
     private Vector3 grapplePoint; // where the line for the grappling hook will end
+    private Transform grappleTransform; // the transform of the object that was hit by the grappling hook
+    private Vector3 relativePosition; // the position of the hit relative to the hit object
     private readonly KeyCode grappleKey = KeyCode.Mouse0; // left click
 
     // joint stuff
@@ -27,7 +30,7 @@ public class Grappling : MonoBehaviour
     }
 
     void Update() {
-        startPoint = grappleStartPoint.position; // update where the line should start based on the player's position
+        startPoint = grappleStartPoint.position; // update where the line should start based on the position of the grappleStartPoint
 
         if (Input.GetKeyUp(grappleKey)) { // check if no longer grappling
             StopGrapple();
@@ -45,6 +48,8 @@ public class Grappling : MonoBehaviour
 
         if(Physics.Raycast(startPoint, mousePos-startPoint, out hit, maxGrappleDistance, whatIsGrappleable)) { // send out a ray to check if there is anything grappleable between the player and the mouse cursor
             grapplePoint = hit.point; // set the grappling point to the point that was hit
+            grappleTransform = hit.transform; // get the transform of the object that was hit 
+            relativePosition = grappleTransform.transform.InverseTransformPoint(grapplePoint); // get the relative position of the hit point based on the transform of the hit object
             ConnectJoint();
             ExecuteGrapple();
         } else { // if there was no hit, then the user missed
@@ -75,12 +80,14 @@ public class Grappling : MonoBehaviour
 
     // draw the line and stop grappling if the user releases the grappleKey
     private void ExecuteGrapple() {
+        grapplePoint = grappleTransform.position + relativePosition; // update the end point of the grappling hook line (will move with the object)
         DrawGrapplingHook();
     }
 
     // stop drawing the line and destroy the joint
     private void StopGrapple() {
         line.enabled = false;
+        grappleTransform = null;
         Destroy(joint);
     }
 
