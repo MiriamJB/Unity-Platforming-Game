@@ -10,8 +10,10 @@ public class PlayerHealth : MonoBehaviour
     public Sprite emptyHeart;
     public Sprite fullHeart;
     public Image[] hearts;
+    public Text gameOverText;
     private OxygenDisplay oxygenDisplay;
     private bool startDeductingHearts = false; // Flag to indicate if hearts deduction should start
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,13 @@ public class PlayerHealth : MonoBehaviour
 
         // Start the coroutine to apply damage when oxygen level is -1
         StartCoroutine(TakeDamageOverTime());
+        UpdateCameraUI();
+    }
+
+    void UpdateCameraUI() {
+        if (health <= 0) {
+            gameOverText.text = "Game Over";
+        }
     }
 
     // Coroutine to apply damage when oxygen level is -1
@@ -60,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
             //player.canMove = false;
             //player.isDead = true;
             player.Die();
+            UpdateCameraUI();
         }
     }
 
