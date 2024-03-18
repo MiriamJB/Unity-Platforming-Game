@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     // Others
     public bool invulnerability = false;
 
+    public ParticleSystem dust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,7 @@ public class Player : MonoBehaviour
             if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
             {
                 Footstep();
+                CreateDust();
             }
             else
             {
@@ -188,6 +191,11 @@ public class Player : MonoBehaviour
         {
             isNearSign = false;
         }
+    }
+
+    void CreateDust(){
+
+        dust.Play();
     }
 
 }
