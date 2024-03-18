@@ -80,7 +80,9 @@ public class Grappling : MonoBehaviour
 
     // draw the line and stop grappling if the user releases the grappleKey
     private void ExecuteGrapple() {
-        grapplePoint = grappleTransform.position + relativePosition; // update the end point of the grappling hook line (will move with the object)
+        if (grappleTransform != null) {
+            grapplePoint = grappleTransform.position + relativePosition; // update the end point of the grappling hook line (will move with the object)
+        }
         DrawGrapplingHook();
     }
 
