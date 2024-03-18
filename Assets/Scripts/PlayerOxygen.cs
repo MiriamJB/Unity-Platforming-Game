@@ -4,7 +4,6 @@ public class PlayerOxygen : MonoBehaviour
 {
     public int maxOxygen;
     public int oxygen;
-    public Player player;
 
     void Start()
     {

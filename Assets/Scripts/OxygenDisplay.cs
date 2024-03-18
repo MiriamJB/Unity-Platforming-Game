@@ -21,34 +21,22 @@ public class OxygenDisplay : MonoBehaviour
 
     IEnumerator DecreaseOxygenAndLoseHealth()
     {
-        while (currentOxygenIndex >= 0)
+        while (true)
         {
             yield return new WaitForSeconds(2f); 
-
-            // Decrease the oxygen level
-            currentOxygenIndex--;
-
-            // Update the oxygen display
-            UpdateOxygenDisplay();
-
-            // If oxygen level reaches 0, start losing health
-            if (currentOxygenIndex == 0)
+            if (currentOxygenIndex >= 0)
             {
-                StartCoroutine(LoseHealth());
+                currentOxygenIndex--;
+                UpdateOxygenDisplay();
+            }
+            else
+            {
+                playerHealth.TakeDamage(1);
+                UpdateHeartsDisplay();
             }
         }
     }
 
-    // Coroutine to lose health
-    IEnumerator LoseHealth()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f); // Lose health every 2 seconds
-            playerHealth.TakeDamage(1);
-            UpdateHeartsDisplay();
-        }
-    }
 
     // Increase the oxygen level
     public void IncreaseOxygenLevel()
