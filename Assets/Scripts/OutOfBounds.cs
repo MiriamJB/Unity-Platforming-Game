@@ -1,13 +1,13 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OutOfBounds : MonoBehaviour
 {
+    // Define public definiton for player to reference.
     public Player player;
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restart scene
+        // If Player collides with object, execute die script on player object.
+        if (other.gameObject.CompareTag("Player")) {
             player.Die();
         }
     }
