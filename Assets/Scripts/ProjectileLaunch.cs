@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileLaunch : MonoBehaviour
-{
+public class ProjectileLaunch : MonoBehaviour {
     // Start is called before the first frame update
     public Player player; // Reference to the Player script
 
@@ -14,17 +11,21 @@ public class ProjectileLaunch : MonoBehaviour
     public float shootCounter;
     public float spawnOffsetDistance = 1f; // Offset distance to prevent collision
 
+    private float throwCounter = 0;
+    private float throwTime = .6f;
 
-    void Start()
-    {
+
+    void Start() {
         shootCounter = shootTime;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButton("Fire2") && shootCounter <= 0)
-        {
+    void Update() {
+        if (Input.GetButton("Fire2") && shootCounter <= 0) {
+            // change throwing variables for the animator
+            player.isShooting = true;
+            throwCounter = throwTime;
+
             // Calculate offset based on player's facing direction
             Vector3 spawnOffset = player.isFacingRight ? new Vector3(spawnOffsetDistance, 0, 0) : new Vector3(-spawnOffsetDistance, 0, 0);
             Vector3 spawnPosition = projectileSpawn.position + spawnOffset;
@@ -34,17 +35,21 @@ public class ProjectileLaunch : MonoBehaviour
             Projectile projectileScript = projectileObject.GetComponent<Projectile>();
 
             // Set the projectile's direction based on the player's facing direction
-            if (player.isFacingRight)
-            {
+            if (player.isFacingRight) {
                 projectileScript.direction = Vector2.right;
-            }
-            else
-            {
+            } else {
                 projectileScript.direction = Vector2.left;
             }
 
             shootCounter = shootTime;
         }
+
         shootCounter -= Time.deltaTime;
+        throwCounter -= Time.deltaTime;
+
+        if (player.isShooting && throwCounter <= 0) {
+            player.isShooting = false;
+        }
+        
     }
 }
