@@ -12,6 +12,9 @@ public class Projectile : MonoBehaviour
     public float projectileCount;
     public Vector2 direction = Vector2.right; // Default direction is right
 
+    public int damage;
+    public EnemyHealth enemyHealth;
+
     void Start()
     {
         projectileCount = projectileLife;
@@ -32,10 +35,17 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        // Check if the collision is with an enemy
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
         }
+
+        // Destroy the projectile after it hits something
         Destroy(gameObject);
     }
 }
