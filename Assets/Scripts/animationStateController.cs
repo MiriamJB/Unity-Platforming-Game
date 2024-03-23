@@ -41,5 +41,17 @@ public class animationStateController : MonoBehaviour {
         if (animator.GetBool("isDashing") != player.isDashing) {
             animator.SetBool("isDashing", player.isDashing);
         }
+
+        // check if player is shooting
+        if (animator.GetBool("isShooting") != player.isShooting) {
+            animator.SetBool("isShooting", player.isShooting);
+        }
+
+        // activate the arms layer if shooting
+        if (player.isShooting) {
+            animator.SetLayerWeight(animator.GetLayerIndex("arms"), 1);
+        } else {
+            animator.SetLayerWeight(animator.GetLayerIndex("arms"), 0);   
+        }
     }
 }

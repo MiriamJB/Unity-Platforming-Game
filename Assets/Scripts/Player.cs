@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     // movement/direction booleans
     public bool inAir = true; // used to control animations in animationStateController.cs
     public bool isDashing = false; // controled in inAirDash
-    public bool isFacingRight = true; // Public so it can be accessed by the shooting mechanism & animator
+    public bool isFacingRight = true; // public so it can be accessed by the shooting mechanism & animator
+    public bool isShooting = false; // shooting boolean for the animator
     public bool canMove = true; // switches to false when dead
 
     // Others

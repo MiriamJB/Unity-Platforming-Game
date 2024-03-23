@@ -247,18 +247,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBodyComponent: {fileID: 0}
-  groundCheckTransform: {fileID: 9147017764764694724}
   ragdoll: {fileID: 5339855084797241196}
-  isDead: 0
-  timeToRestart: 3
+  groundCheckTransform: {fileID: 9147017764764694724}
   jumpKeyWasPressed: 0
-  inAir: 0
-  canMove: 1
-  isFacingRight: 1
   horizontalInput: 0
   footstepSound: {fileID: 8331528032948604605}
   tutorialText: {fileID: 0}
+  inAir: 0
+  isDashing: 0
+  isFacingRight: 1
+  isShooting: 0
+  canMove: 1
   invulnerability: 0
+  timeToRestart: 3
 --- !u!114 &4321245585956816522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +278,8 @@ MonoBehaviour:
   emptyHeart: {fileID: 21300000, guid: 6a52658fde6b24ac2b5ba87d721d5efd, type: 3}
   fullHeart: {fileID: 21300000, guid: 32f48c0c488804619ad5fa9bacf581c0, type: 3}
   hearts: []
+  gameOverText: {fileID: 0}
+  meshRender: {fileID: 7592904399686820382}
 --- !u!114 &4713078467917307144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxOxygen: 5
   oxygen: 5
-  player: {fileID: 6712264994819614093}
 --- !u!114 &5339855084797241196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3074,6 +3076,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!137 &7592904399686820382 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3056405045600201950, guid: b68b0c174c1098f42addc63c7251fac2, type: 3}
+  m_PrefabInstance: {fileID: 4843025878875328192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8055460407498488271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3242412438419207951, guid: b68b0c174c1098f42addc63c7251fac2, type: 3}
