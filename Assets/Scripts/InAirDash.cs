@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InAirDash : MonoBehaviour {
     private Player player; // Reference to the Player class
@@ -12,9 +13,12 @@ public class InAirDash : MonoBehaviour {
     private int dashesLeft;
     private float lastDashTime;
 
+    public Image cooldownImage; // Reference to the UI Image for cooldown
+
     void Start() {
         player = GetComponent<Player>();
         dashesLeft = numDashes;
+        cooldownImage.fillAmount = 0f; // Set initial fill amount to 0
     }
 
     void Update() {
@@ -23,6 +27,11 @@ public class InAirDash : MonoBehaviour {
                 StartCoroutine(Dash());
             }
         }
+
+        // Update cooldown bar fill amount
+        float timeSinceLastDash = Time.time - lastDashTime;
+        float cooldownPercentage = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
+        cooldownImage.fillAmount = cooldownPercentage;
     }
 
     IEnumerator Dash() {
