@@ -39,9 +39,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            //Destroy(gameObject);
-            //player.canMove = false;
-            //player.isDead = true;
             player.Die();
             UpdateCameraUI();
         }
