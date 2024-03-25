@@ -77,17 +77,17 @@ public class Player : MonoBehaviour
             isFacingRight = false;
         }
 
-            // footstep sound will start when the player is touching the ground and moving, and will stop otherwise
-            if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
-            {
-                Footstep();
-                CreateDust();
-            }
-            else
-            {
-                StopFootsteps();
-            }
+        // footstep sound will start when the player is touching the ground and moving, and will stop otherwise
+        if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
+        {
+            Footstep();
+            CreateDust();
         }
+        else
+        {
+            StopFootsteps();
+        }
+        
     }
 
     // FixedUpdate is called at a set rate (doesn't fluctuate based on frame rate like the Update method)
@@ -179,4 +179,3 @@ public class Player : MonoBehaviour
     }
 
 }
-
