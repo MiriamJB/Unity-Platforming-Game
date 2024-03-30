@@ -12,13 +12,12 @@ public class InAirDash : MonoBehaviour {
 
     private int dashesLeft;
     private float lastDashTime;
-
-    public Image cooldownImage; // Reference to the UI Image for cooldown
+    public Slider cooldownSlider; // Reference to the UI Slider for cooldown
 
     void Start() {
         player = GetComponent<Player>();
         dashesLeft = numDashes;
-        cooldownImage.fillAmount = 0f; // Set initial fill amount to 0
+        cooldownSlider.value = 0f; // Set initial fill amount to 0
     }
 
     void Update() {
@@ -28,10 +27,10 @@ public class InAirDash : MonoBehaviour {
             }
         }
 
-        // Update cooldown bar fill amount
+        // Update cooldown slider fill amount
         float timeSinceLastDash = Time.time - lastDashTime;
         float cooldownPercentage = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
-        cooldownImage.fillAmount = cooldownPercentage;
+        cooldownSlider.value = cooldownPercentage;
     }
 
     IEnumerator Dash() {
