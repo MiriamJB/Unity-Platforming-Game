@@ -5644,7 +5644,7 @@ RectTransform:
   m_GameObject: {fileID: 1136410911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1098, y: 1, z: 1}
+  m_LocalScale: {x: 1.1387658, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1223479593}
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21938822, g: 0.9150943, b: 0.11654504, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7171,7 +7171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -234.82759}
+  m_AnchoredPosition: {x: -309, y: -216.1}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1498534303
@@ -9778,6 +9778,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 176295266}
+    - target: {fileID: 6141561749168390748, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: cooldownSlider
+      value: 
+      objectReference: {fileID: 1498534303}
     - target: {fileID: 6995330515987129597, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
