@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6998,6 +6998,14 @@ PrefabInstance:
     - target: {fileID: 257380020443562009, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713078467917307144, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713078467917307144, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
+      propertyPath: maxHealth
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6712264994819614093, guid: 8cb1b73777304ad44952718015d24ff2, type: 3}
       propertyPath: timeToRestart

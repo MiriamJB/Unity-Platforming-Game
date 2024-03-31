@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void UpdateCameraUI() {
         if (health <= 0) {
-            gameOverText.text = "Game Over";
+            gameOverText.text = "GAME OVER";
         }
     }
 
