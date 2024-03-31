@@ -10,7 +10,10 @@ public class OxygenDisplay : MonoBehaviour
     public Image[] hearts; 
     public PlayerHealth playerHealth;
 
-    public int currentOxygenIndex = 4; 
+    public int currentOxygenIndex = 4;
+
+    // How much time in seconds it takes to lose oxygen/health.
+    public float oxygenTick = 4f;
 
 
     void Start()
@@ -23,7 +26,7 @@ public class OxygenDisplay : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f); 
+            yield return new WaitForSeconds(oxygenTick); 
             if (currentOxygenIndex >= 0)
             {
                 currentOxygenIndex--;
@@ -66,17 +69,17 @@ public class OxygenDisplay : MonoBehaviour
 
     // Update the hearts display
     void UpdateHeartsDisplay()
-{
-    for (int i = 0; i < hearts.Length; i++)
     {
-        if (i < playerHealth.health)
+        for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].sprite = full;
-        }
-        else
-        {
-            hearts[i].sprite = empty;
+            if (i < playerHealth.health)
+            {
+                hearts[i].sprite = full;
+            }
+            else
+            {
+                hearts[i].sprite = empty;
+            }
         }
     }
-}
 }
