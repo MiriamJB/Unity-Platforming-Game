@@ -3166,11 +3166,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8971224611749936771, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.655
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 8971224611749936771, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.63
+      value: -0.15
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1044219646339428990, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
