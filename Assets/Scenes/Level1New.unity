@@ -2484,7 +2484,7 @@ PrefabInstance:
     - target: {fileID: -1044219646339428990, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: tutorialTextPrefab
       value: 
-      objectReference: {fileID: 2460573398563429402, guid: 9c9f9bf0cc728e741b00a01cd59fe923, type: 3}
+      objectReference: {fileID: 2460573398563429402, guid: 56f13eb40e8b0d6428927e29cc9853ab, type: 3}
     - target: {fileID: 3980415678108578129, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_text
       value: Read Me!
@@ -2799,7 +2799,7 @@ PrefabInstance:
     - target: {fileID: -1044219646339428990, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: tutorialTextPrefab
       value: 
-      objectReference: {fileID: 2460573398563429402, guid: 71b8f313a4e61de418effa2df819b6d8, type: 3}
+      objectReference: {fileID: 2460573398563429402, guid: 006d9944f0b633042b4968c20270b222, type: 3}
     - target: {fileID: 3980415678108578129, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_text
       value: Read Me!
@@ -7984,7 +7984,7 @@ PrefabInstance:
     - target: {fileID: -1044219646339428990, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: tutorialTextPrefab
       value: 
-      objectReference: {fileID: 2460573398563429402, guid: 5a0d308f96565f34a865f8a5a204e407, type: 3}
+      objectReference: {fileID: 2460573398563429402, guid: 006d9944f0b633042b4968c20270b222, type: 3}
     - target: {fileID: 3980415678108578129, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_text
       value: Read Me!
