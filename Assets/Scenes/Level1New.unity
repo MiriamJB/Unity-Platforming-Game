@@ -2799,7 +2799,7 @@ PrefabInstance:
     - target: {fileID: -1044219646339428990, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: tutorialTextPrefab
       value: 
-      objectReference: {fileID: 2460573398563429402, guid: 006d9944f0b633042b4968c20270b222, type: 3}
+      objectReference: {fileID: 2460573398563429402, guid: 3dbac462fb38c574f8154a3962b3dca5, type: 3}
     - target: {fileID: 3980415678108578129, guid: eec441c0374d7e946934e1f40c37372e, type: 3}
       propertyPath: m_text
       value: Read Me!
