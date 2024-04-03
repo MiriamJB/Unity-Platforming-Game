@@ -6,9 +6,9 @@ public class InAirDash : MonoBehaviour {
     private Player player; // Reference to the Player class
 
     // Customize these variables according to your needs
-    [SerializeField] private int numDashes;
-    [SerializeField] private int dashForce;
-    [SerializeField] private float dashCooldown;
+    [SerializeField] private int numDashes = 5;
+    [SerializeField] private int dashForce = 15;
+    [SerializeField] private float dashCooldown = 5f;
 
     private int dashesLeft;
     private float lastDashTime;
