@@ -152,6 +152,3 @@ MonoBehaviour:
   speed: 10
   projectileLife: 2
   projectileCount: 0
-  direction: {x: 1, y: 0}
-  damage: 1
-  enemyHealth: {fileID: 0}
