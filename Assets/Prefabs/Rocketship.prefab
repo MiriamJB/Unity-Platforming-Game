@@ -93,7 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  targetScene: Level2
+  targetScene: Level2New
+  uIManager: {fileID: 0}
 --- !u!65 &2482922867370826639
 BoxCollider:
   m_ObjectHideFlags: 0
