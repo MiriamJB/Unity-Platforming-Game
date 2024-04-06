@@ -4,7 +4,8 @@ using UnityEngine.Video;
 public class Grappling : MonoBehaviour
 {
     // player/mouse info
-    public Transform playerTransform; // used to get the position of the player. Swap this out with the grapple gun
+    public Player player;
+    private Transform playerTransform; // used to get the position of the player. Swap this out with the grapple gun
     public Transform grappleStartPoint;
     private Vector3 startPoint; // where the line for the grappling hook will start
     private Vector3 mousePos; // where the cursor is in the game view
@@ -27,9 +28,17 @@ public class Grappling : MonoBehaviour
 
     void Start() {
         line.enabled = false; // starts without a line being drawn
+        playerTransform = player.transform;
     }
 
     void Update() {
+        // disable grappling if unable to move
+        if (!player.canMove && line.enabled) {
+            StopGrapple();
+        } else if (!player.canMove) { 
+            return; 
+        }
+
         startPoint = grappleStartPoint.position; // update where the line should start based on the position of the grappleStartPoint
 
         if (Input.GetKeyUp(grappleKey)) { // check if no longer grappling
