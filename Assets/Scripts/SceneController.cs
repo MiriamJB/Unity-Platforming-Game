@@ -9,4 +9,12 @@ public class LevelLoader : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }
