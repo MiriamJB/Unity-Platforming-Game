@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     // Others
     public bool invulnerability = false;
-    private bool isNearSign = false;
+    public bool isNearSign = false;
     public int timeToRestart; // amount of time to wait after death before restarting the scene
 
 
@@ -61,9 +61,9 @@ public class Player : MonoBehaviour
         if (!canMove) {
             return;
         }
-        
+
         // pressing the space bar will trigger a jump
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0) {
+        if (Input.GetButtonDown("Jump") && jumpsRemaining > 0) {
             jumpKeyWasPressed = true;
             inAir = true;
         }
