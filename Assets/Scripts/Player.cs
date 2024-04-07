@@ -148,11 +148,15 @@ public class Player : MonoBehaviour
 
     /* DEATH */
     public void Die() {
-        canMove = false; // lock the character so the user cannot move them anymore
-        StopFootsteps(); // stop the footstep sound
+        DisableMovement();
         Camera.main.transform.SetParent(null); // detach the camera from the player
         ragdoll.EnableRagdoll(); // make the player ragdoll
         Invoke(nameof(ReloadScene), timeToRestart); // reload after a few seconds
+    }
+
+    public void DisableMovement() {
+        canMove = false; // lock the character so the user cannot move them anymore
+        StopFootsteps(); // stop the footstep sound
     }
 
     void ReloadScene() {

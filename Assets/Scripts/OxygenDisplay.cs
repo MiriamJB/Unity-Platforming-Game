@@ -10,6 +10,7 @@ public class OxygenDisplay : MonoBehaviour
     public Image[] hearts; 
     public PlayerHealth playerHealth;
 
+    public float timeToTick = 4f;
     public int currentOxygenIndex = 4; 
 
 
@@ -23,7 +24,7 @@ public class OxygenDisplay : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f); 
+            yield return new WaitForSeconds(timeToTick);
             if (currentOxygenIndex >= 0)
             {
                 currentOxygenIndex--;

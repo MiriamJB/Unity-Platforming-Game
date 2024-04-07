@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3eded4222a297438470c26e47b4aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 6995330515987129597}
+  player: {fileID: 6712264994819614093}
   grappleStartPoint: {fileID: 8937150873401428873}
   line: {fileID: 5590486139224052595}
   whatIsGrappleable:
@@ -339,6 +339,7 @@ MonoBehaviour:
   numDashes: 5
   dashForce: 15
   dashCooldown: 5
+  cooldownSlider: {fileID: 0}
 --- !u!114 &4338577865122948030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +385,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerHealth: {fileID: 4321245585956816522}
+  timeToTick: 4
   currentOxygenIndex: 4
 --- !u!114 &8381254678511516244
 MonoBehaviour:

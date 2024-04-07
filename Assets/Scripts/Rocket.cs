@@ -1,17 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Rocket : MonoBehaviour
-{
-    // Define public definiton for player to reference.
-    public Player player;
-    // Define the scene that will be loaded when player collides with rocket.
-    public string targetScene;
+public class Rocket : MonoBehaviour {
+
+    public Player player; // Define public definiton for player to reference.
+    public string targetScene; // Define the scene that will be loaded when player collides with rocket.
+    public UIManager uIManager;
 
     void OnTriggerEnter(Collider other) {
-        // If Player collides with object, load the target scene.
+        // If Player collides with object, enable the victory screen
         if (other.gameObject.CompareTag("Player")) {
-            SceneManager.LoadScene(targetScene);
+            uIManager.VictoryScreen(player);
         }
     }
 }

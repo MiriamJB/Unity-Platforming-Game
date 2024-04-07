@@ -1,20 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InAirDash : MonoBehaviour {
     private Player player; // Reference to the Player class
 
     // Customize these variables according to your needs
-    [SerializeField] private int numDashes;
-    [SerializeField] private int dashForce;
-    [SerializeField] private float dashCooldown;
+    [SerializeField] private int numDashes = 5;
+    [SerializeField] private int dashForce = 15;
+    [SerializeField] private float dashCooldown = 5f;
 
     private int dashesLeft;
     private float lastDashTime;
+    public Slider cooldownSlider; // Reference to the UI Slider for cooldown
 
     void Start() {
         player = GetComponent<Player>();
         dashesLeft = numDashes;
+        cooldownSlider.value = 0f; // Set initial fill amount to 0
     }
 
     void Update() {
@@ -23,6 +26,11 @@ public class InAirDash : MonoBehaviour {
                 StartCoroutine(Dash());
             }
         }
+
+        // Update cooldown slider fill amount
+        float timeSinceLastDash = Time.time - lastDashTime;
+        float cooldownPercentage = Mathf.Clamp01(timeSinceLastDash / dashCooldown);
+        cooldownSlider.value = cooldownPercentage;
     }
 
     IEnumerator Dash() {
