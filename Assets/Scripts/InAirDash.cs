@@ -22,7 +22,7 @@ public class InAirDash : MonoBehaviour {
 
     void Update() {
         if (player.inAir && !player.isDashing && dashesLeft > 0 && Time.time - lastDashTime >= dashCooldown) {
-            if (Input.GetKeyDown(KeyCode.LeftShift)) { // You can change this to any other input 
+            if (Input.GetButton("Fire3")) { // You can change this to any other input 
                 StartCoroutine(Dash());
             }
         }
