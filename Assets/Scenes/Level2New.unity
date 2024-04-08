@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 264711905}
 --- !u!114 &66463167
 MonoBehaviour:
   m_ObjectHideFlags: 0

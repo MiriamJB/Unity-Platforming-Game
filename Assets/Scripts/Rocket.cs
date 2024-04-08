@@ -3,7 +3,6 @@ using UnityEngine;
 public class Rocket : MonoBehaviour {
 
     public Player player; // Define public definiton for player to reference.
-    public string targetScene; // Define the scene that will be loaded when player collides with rocket.
     public UIManager uIManager;
 
     void OnTriggerEnter(Collider other) {
