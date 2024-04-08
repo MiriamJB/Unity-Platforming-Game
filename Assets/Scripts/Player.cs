@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public bool invulnerability = false;
     private bool isNearSign = false;
     public int timeToRestart; // amount of time to wait after death before restarting the scene
+    public ParticleSystem dustEffect; // particle system for dust effect
 
 
     // Start is called before the first frame update
@@ -113,7 +114,12 @@ public class Player : MonoBehaviour
             rigidBodyComponent.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange); // Set upwards jump force as up vector * jump speed.
             jumpKeyWasPressed = false; // Define jump key as not pressed.
             jumpsRemaining--; // Decrese amount of jumps left to jump.
+            CreateDust(); // Trigger dust effect when jumping.
         }
+    }
+    /* dust effect */
+    void CreateDust() {
+            dustEffect.Play();
     }
 
     /* FOOTSTEP SOUND */
