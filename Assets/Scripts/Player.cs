@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     public ParticleSystem dustEffect; // particle system for dust effect
 
 
+    public ParticleSystem dust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,11 +80,16 @@ public class Player : MonoBehaviour
         }
 
         // footstep sound will start when the player is touching the ground and moving, and will stop otherwise
-        if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2) {
+        if (Mathf.Abs(horizontalInput) > 0 && Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length > 2)
+        {
             Footstep();
-        } else {
+            CreateDust();
+        }
+        else
+        {
             StopFootsteps();
         }
+        
     }
 
     // FixedUpdate is called at a set rate (doesn't fluctuate based on frame rate like the Update method)
@@ -177,5 +184,9 @@ public class Player : MonoBehaviour
         }
     }
 
-}
+    void CreateDust(){
 
+        dust.Play();
+    }
+
+}
