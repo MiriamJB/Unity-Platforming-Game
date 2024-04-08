@@ -250,7 +250,6 @@ MonoBehaviour:
   rigidBodyComponent: {fileID: 0}
   ragdoll: {fileID: 5339855084797241196}
   groundCheckTransform: {fileID: 9147017764764694724}
-  groundCheckTransform: {fileID: 9147017764764694724}
   jumpKeyWasPressed: 0
   horizontalInput: 0
   footstepSound: {fileID: 8331528032948604605}
@@ -261,7 +260,9 @@ MonoBehaviour:
   isShooting: 0
   canMove: 1
   invulnerability: 0
+  isNearSign: 0
   timeToRestart: 3
+  dustEffect: {fileID: 3221044280117897229}
   dust: {fileID: 3221044280117897229}
 --- !u!114 &4321245585956816522
 MonoBehaviour:
