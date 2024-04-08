@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
             CreateDust(); // Trigger dust effect when jumping.
         }
     }
+    
     /* dust effect */
     void CreateDust() {
             dustEffect.Play();
@@ -182,11 +183,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Sign")) {
             isNearSign = false;
         }
-    }
-
-    void CreateDust(){
-
-        dust.Play();
     }
 
 }
