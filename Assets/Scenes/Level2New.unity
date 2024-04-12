@@ -2214,7 +2214,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 940688976498495897, guid: bb38752f653861448ba49ba95ca9c69b, type: 3}
       propertyPath: nextScene
-      value: Level1New
+      value: GameMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2059385238793980273, guid: bb38752f653861448ba49ba95ca9c69b, type: 3}
       propertyPath: m_Name
@@ -2246,7 +2246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302924835952391878, guid: bb38752f653861448ba49ba95ca9c69b, type: 3}
       propertyPath: m_text
-      value: RESTART
+      value: MAIN MENU
       objectReference: {fileID: 0}
     - target: {fileID: 6728115069233734232, guid: bb38752f653861448ba49ba95ca9c69b, type: 3}
       propertyPath: m_AnchorMax.x
